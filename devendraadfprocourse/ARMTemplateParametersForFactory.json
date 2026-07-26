@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "devendraadfprocourse"
+		},
+		"ls_datalake_accountKey": {
+			"value": ""
+		},
+		"ls_sqldb_password": {
+			"value": ""
+		},
+		"ls_datalake_properties_typeProperties_url": {
+			"value": "https://adfprostoragedevendra.dfs.core.windows.net/"
+		},
+		"ls_restapi_properties_typeProperties_url": {
+			"value": "https://pokeapi.co/api/v2/pokemon"
+		},
+		"ls_sqldb_properties_typeProperties_server": {
+			"value": "adfproserverdevendra.database.windows.net"
+		},
+		"ls_sqldb_properties_typeProperties_database": {
+			"value": "adfprodatabase"
+		},
+		"ls_sqldb_properties_typeProperties_userName": {
+			"value": "adminadmin"
+		}
+	}
+}
