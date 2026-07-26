@@ -1,0 +1,15 @@
+{
+	"name": "devendraadfprocourse",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "9acb0153-c712-481e-9e77-09a9c46d26a3",
+		"tenantId": "23b27e60-6f53-49f8-95ce-da9805ef9f93"
+	}
+}

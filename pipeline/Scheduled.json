@@ -1,0 +1,83 @@
+{
+	"name": "Scheduled",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Ingestion",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"schema": {
+							"value": "@pipeline().parameters.schema",
+							"type": "Expression"
+						},
+						"table": {
+							"value": "@pipeline().parameters.table",
+							"type": "Expression"
+						},
+						"backdate": {
+							"value": "@pipeline().parameters.backdate",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "alerts",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Execute Pipeline1",
+						"dependencyConditions": [
+							"Failed",
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://prod-25.northcentralus.logic.azure.com:443/workflows/7269464900484f0889e3b892de9ffe90/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=2W8flw3hV2N_Yq7URaDHJg7LLQF-iaw3rDY8KfmUBm0",
+					"body": {
+						"value": "{\n    \"pipeline_name\": \"@{pipeline().Pipeline}\",\n    \"pipeline_runid\": \"@{pipeline().RunId}\"\n}",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"schema": {
+				"type": "string",
+				"defaultValue": "source"
+			},
+			"table": {
+				"type": "string",
+				"defaultValue": "orders"
+			},
+			"backdate": {
+				"type": "string",
+				"defaultValue": "''"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-07-26T01:21:26Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
