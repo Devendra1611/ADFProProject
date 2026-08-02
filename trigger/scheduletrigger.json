@@ -20,16 +20,8 @@
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 1,
-				"startTime": "2026-07-25T15:25:00",
-				"timeZone": "India Standard Time",
-				"schedule": {
-					"minutes": [
-						20
-					],
-					"hours": [
-						18
-					]
-				}
+				"startTime": "2026-08-02T18:22:00",
+				"timeZone": "India Standard Time"
 			}
 		}
 	}
