@@ -35,6 +35,14 @@
 			"type": "string",
 			"defaultValue": "adminadmin"
 		},
+		"scheduletrigger_properties_Scheduled_parameters_schema": {
+			"type": "string",
+			"defaultValue": "source"
+		},
+		"scheduletrigger_properties_Scheduled_parameters_table": {
+			"type": "string",
+			"defaultValue": "Orders"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -82,6 +90,12 @@
 					},
 					"ls_sqldb_properties_typeProperties_userName": {
 						"value": "[parameters('ls_sqldb_properties_typeProperties_userName')]"
+					},
+					"scheduletrigger_properties_Scheduled_parameters_schema": {
+						"value": "[parameters('scheduletrigger_properties_Scheduled_parameters_schema')]"
+					},
+					"scheduletrigger_properties_Scheduled_parameters_table": {
+						"value": "[parameters('scheduletrigger_properties_Scheduled_parameters_table')]"
 					}
 				}
 			},

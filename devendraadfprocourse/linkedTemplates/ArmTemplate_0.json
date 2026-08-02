@@ -34,6 +34,14 @@
 		"ls_sqldb_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "adminadmin"
+		},
+		"scheduletrigger_properties_Scheduled_parameters_schema": {
+			"type": "string",
+			"defaultValue": "source"
+		},
+		"scheduletrigger_properties_Scheduled_parameters_table": {
+			"type": "string",
+			"defaultValue": "Orders"
 		}
 	},
 	"variables": {
@@ -768,7 +776,8 @@
 										"sink": {
 											"type": "DelimitedTextSink",
 											"storeSettings": {
-												"type": "AzureBlobFSWriteSettings"
+												"type": "AzureBlobFSWriteSettings",
+												"copyBehavior": "MergeFiles"
 											},
 											"formatSettings": {
 												"type": "DelimitedTextWriteSettings",
@@ -1597,22 +1606,25 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Stopped",
+				"runtimeState": "Started",
 				"pipelines": [
 					{
 						"pipelineReference": {
 							"referenceName": "Scheduled",
 							"type": "PipelineReference"
 						},
-						"parameters": {}
+						"parameters": {
+							"schema": "[parameters('scheduletrigger_properties_Scheduled_parameters_schema')]",
+							"table": "[parameters('scheduletrigger_properties_Scheduled_parameters_table')]"
+						}
 					}
 				],
 				"type": "ScheduleTrigger",
 				"typeProperties": {
 					"recurrence": {
-						"frequency": "Day",
-						"interval": 1,
-						"startTime": "2026-07-25T15:25:00",
+						"frequency": "Minute",
+						"interval": 15,
+						"startTime": "2026-08-02T18:30:00",
 						"timeZone": "India Standard Time"
 					}
 				}

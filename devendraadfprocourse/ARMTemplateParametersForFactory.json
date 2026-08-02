@@ -25,6 +25,12 @@
 		},
 		"ls_sqldb_properties_typeProperties_userName": {
 			"value": "adminadmin"
+		},
+		"scheduletrigger_properties_Scheduled_parameters_schema": {
+			"value": "source"
+		},
+		"scheduletrigger_properties_Scheduled_parameters_table": {
+			"value": "Orders"
 		}
 	}
 }
