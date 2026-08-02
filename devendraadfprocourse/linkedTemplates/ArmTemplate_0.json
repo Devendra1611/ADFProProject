@@ -41,29 +41,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/demo')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Wait1",
-						"type": "Wait",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": 1
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/ls_datalake')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -400,7 +377,7 @@
 								{
 									"type": "Query",
 									"text": {
-										"value": "select count(*) as total_count from @{pipeline().parameters.schema}.@{pipeline().parameters.table}\nwhere last_updated > '@{activity('last_cdc').output.firstRow.cdc_timestamp}'",
+										"value": "select count(*) as total_count from @{pipeline().parameters.schema}.@{pipeline().parameters.table}\nwhere last_updated > '@{if(empty(pipeline().parameters.backdate),activity('last_cdc').output.firstRow.cdc_timestamp,pipeline().parameters.backdate)}'",
 										"type": "Expression"
 									}
 								}
