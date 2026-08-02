@@ -2,12 +2,16 @@
 	"name": "scheduletrigger",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
 					"referenceName": "Scheduled",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"schema": "source",
+					"table": "Orders"
 				}
 			}
 		],
@@ -17,7 +21,15 @@
 				"frequency": "Day",
 				"interval": 1,
 				"startTime": "2026-07-25T15:25:00",
-				"timeZone": "India Standard Time"
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						20
+					],
+					"hours": [
+						18
+					]
+				}
 			}
 		}
 	}
